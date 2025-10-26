@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBRA FESTA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">VIBRA <span>FESTA</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#vendors">Ser expositor</a></li>
+                    <li><a href="#about">Sobre nosotros</a></li>
+                    <li><a href="gallery.html">Galería</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home">Inicio</a>
+                <a href="#vendors">Ser expositor</a>
+                <a href="#about">Sobre nosotros</a>
+                <a href="gallery.html">Galería</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </div>
+    </header>
+    <section class="hero" id="home">
+        <div class="hero-slide active">
+            <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Multitud en evento al aire libre" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">EXPERIENCIA VIBRA FESTA</h1>
+                <p class="hero-subtitle">Donde los expositores se encuentran con la comunidad</p>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <img src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Escenario con luces" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">PRÓXIMOS EVENTOS</h1>
+                <p class="hero-subtitle">Sumate este fin de semana</p>
+                <a href="#events" class="btn">Ver eventos</a>
+            </div>
+        </div>
+        <div class="slider-dots" aria-label="Selector de diapositivas">
+            <div class="dot active" data-slide="0" aria-label="Diapositiva 1"></div>
+            <div class="dot" data-slide="1" aria-label="Diapositiva 2"></div>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre <span>VIBRA FESTA</span></h2>
+            <div class="about-content">
+                <p class="about-text">
+                    Vibra Festa es un marketplace que conecta a expositores talentosos con comunidades vibrantes.
+                    Creamos experiencias inolvidables mediante eventos cuidadosamente curados que celebran a
+                    negocios locales, artesanos y emprendedores.
+                </p>
+                <p class="about-text">
+                    Nuestra misión es brindar una plataforma profesional y organizada para que los expositores
+                    muestren sus productos y servicios mientras crean vínculos duraderos con sus clientes.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="events" id="events">
+        <div class="container">
+            <h2 class="section-title">Próximos <span>eventos</span></h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">
+                        <i class="far fa-calendar" aria-hidden="true"></i>
+                        <span>15 de marzo de 2026</span>
+                    </div>
+                    <h3 class="event-title">Feria de Primavera</h3>
+                    <div class="event-info">
+                        <div>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>Plaza Central</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <span>50 expositores</span>
+                        </div>
+                    </div>
+                    <a href="#" class="event-btn">
+                        Más info
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <i class="far fa-calendar" aria-hidden="true"></i>
+                        <span>20 de abril de 2026</span>
+                    </div>
+                    <h3 class="event-title">Feria de Artesanos</h3>
+                    <div class="event-info">
+                        <div>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>Paseo del Centro</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <span>75 expositores</span>
+                        </div>
+                    </div>
+                    <a href="#" class="event-btn">
+                        Más info
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <i class="far fa-calendar" aria-hidden="true"></i>
+                        <span>10 de mayo de 2026</span>
+                    </div>
+                    <h3 class="event-title">Inicio de Verano</h3>
+                    <div class="event-info">
+                        <div>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>Parque del Río</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <span>100 expositores</span>
+                        </div>
+                    </div>
+                    <a href="#" class="event-btn">
+                        Más info
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimonios de <span>expositores</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        "Vibra Festa transformó mi emprendimiento. ¡El apoyo de la comunidad es increíble!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Sarah Mitchell</div>
+                        <div class="author-business">Handmade Jewelry Co.</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        "La mejor experiencia como expositor: profesional, organizado y con gran afluencia."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-name">James Rodriguez</div>
+                        <div class="author-business">Artisan Coffee Roasters</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        "Participé los últimos 2 años y cada evento supera mis expectativas."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Emily Chen</div>
+                        <div class="author-business">Organic Skincare</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="vendors" id="vendors">
+        <div class="container">
+            <div class="vendors-content">
+                <h2 class="section-title">Sé <span>expositor</span></h2>
+                <p class="vendors-text">
+                    Unite a nuestra comunidad de expositores y llevá tu negocio al próximo nivel.
+                    Te brindamos todo lo necesario para que tengas éxito en nuestros eventos.
+                </p>
+                <button class="btn" id="openModalBtn">Postularme</button>
+            </div>
+        </div>
+    </section>
+    <section class="sponsors">
+        <div class="container">
+            <h3 class="sponsors-title">Nuestros patrocinadores</h3>
+            <div class="sponsors-grid">
+                <div class="sponsor-box"><span class="sponsor-name">MARCA A</span></div>
+                <div class="sponsor-box"><span class="sponsor-name">MARCA B</span></div>
+                <div class="sponsor-box"><span class="sponsor-name">MARCA C</span></div>
+                <div class="sponsor-box"><span class="sponsor-name">MARCA D</span></div>
+                <div class="sponsor-box"><span class="sponsor-name">MARCA E</span></div>
+                <div class="sponsor-box"><span class="sponsor-name">MARCA F</span></div>
+            </div>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-form">
+                <h2 class="section-title">Seguimos <span>en contacto</span></h2>
+                <form>
+                    <input type="email" placeholder="Ingresá tu email" class="form-input" required>
+                    <button type="submit" class="btn">Suscribirme al boletín</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">VIBRA <span>FESTA</span></div>
+                    <p class="footer-desc">
+                        Conectamos expositores con la comunidad a través de experiencias de marketplace excepcionales.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Enlaces rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#vendors">Ser expositor</a></li>
+                        <li><a href="#events">Eventos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Soporte</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">Sobre nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                        <li><a href="gallery.html">Galería</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Seguinos</h4>
+                    <a href="https://instagram.com" target="_blank" class="social-link" rel="noopener">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Vibra Festa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="applicationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn" aria-label="Cerrar formulario">&times;</button>
+            <h2 class="section-title">Formulario de <span>Postulación</span></h2>
+            <p class="modal-subtitle">Completá tus datos y contanos sobre tu proyecto. ¡Nos pondremos en contacto a la brevedad!</p>
+            
+            <form id="applicationForm" class="modal-form">
+                <input type="hidden" name="access_key" value="d4c641ca-ba5f-4bbf-a80e-4bcbb5ca6f37">
+                <input type="hidden" name="subject" value="Nueva Postulación de Expositor - Vibra Festa">
+                <input type="hidden" name="from_name" value="Vibra Festa Notificaciones">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido</label>
+                    <input type="text" id="nombre" name="nombre" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Contanos sobre tu emprendimiento</label>
+                    <textarea id="mensaje" name="mensaje" class="form-input" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="instagram">Usuario de Instagram</label>
+                    <input type="text" id="instagram" name="instagram" class="form-input">
+                </div>
+                
+                <div class="h-captcha" data-sitekey="614862c2-84d8-4ee2-ab20-b650a7ec1a40" style="margin-bottom: 20px;"></div>
+
+                <button type="submit" class="btn">Enviar Postulación</button>
+            </form>
+            <div id="form-success-message" style="display: none; text-align: center; color: var(--accent-2); margin-top: 20px;">
+                <p>¡Gracias! Tu postulación ha sido enviada con éxito. Te contactaremos pronto.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VIBRA FESTA · Eventos</title>
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Reuse the site's stylesheet -->
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    main{ padding-top: 120px; }
+    .breadcrumbs{
+      width:100%;max-width:1200px;margin:0 auto 16px auto;padding:0 20px;
+      font-size:13px;color:var(--muted)
+    }
+    .breadcrumbs a{ color:var(--accent); text-decoration:none }
+    .breadcrumbs span{ opacity:.7 }
+
+    .gallery-hero{
+      height: 46vh; min-height: 320px; position: relative; margin-top: 80px;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.6)),
+                  url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+      border-bottom: 1px solid var(--tint-20);
+    }
+    .gallery-hero h1{ font-size:40px; letter-spacing:2px; margin:0 0 8px 0 }
+    .gallery-hero p{ color:var(--muted); margin:0 auto; max-width:760px }
+
+    .events{ width:100%;max-width:1200px;margin:24px auto 60px;padding:0 20px; }
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; }
+    .card{
+      grid-column: span 4; background: color-mix(in srgb, var(--tint) 6%, var(--bg));
+      border:1px solid var(--tint-20); border-radius:16px; overflow:hidden;
+      display:flex; flex-direction:column; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{ transform: translateY(-3px); border-color: var(--tint-30); box-shadow:0 10px 30px rgba(2,8,23,.25); }
+    .card img{ width:100%; aspect-ratio: 16/10; object-fit:cover; display:block }
+    .card .body{ padding:14px 14px 16px }
+    .card h3{ margin:0 0 6px 0; font-size:18px; letter-spacing:.4px }
+    .card p{ margin:0 0 12px 0; color:var(--muted); font-size:14px }
+    .card .actions{ margin-top:auto; padding:0 14px 16px }
+    .btn-link{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px;
+      border:1px solid var(--tint-20); background: transparent; color: var(--ink); text-decoration:none;
+      text-transform:uppercase; letter-spacing:.8px; font-size:12px; transition: all .2s ease
+    }
+    .btn-link:hover{ background: var(--accent); color:#000; border-color: transparent; transform: translateY(-1px) }
+
+    @media (max-width: 1024px){ .card{ grid-column: span 6 } }
+    @media (max-width: 700px){ .grid{ grid-template-columns: repeat(6, 1fr) } .card{ grid-column: span 6 } }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">VIBRA <span>FESTA</span></div>
+        <ul class="nav-links">
+          <li><a href="index.html#home">Inicio</a></li>
+          <li><a href="index.html#vendors">Ser expositor</a></li>
+          <li><a href="index.html#about">Sobre nosotros</a></li>
+          <li><a href="gallery.html" aria-current="page">Eventos</a></li>
+          <li><a href="index.html#contact">Contacto</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#home">Inicio</a>
+        <a href="index.html#vendors">Ser expositor</a>
+        <a href="index.html#about">Sobre nosotros</a>
+        <a href="gallery.html" aria-current="page">Eventos</a>
+        <a href="index.html#contact">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Encabezado -->
+  <section class="gallery-hero">
+    <div>
+      <h1>Eventos</h1>
+      <p>Explorá algunos de nuestros eventos recientes. Cada tarjeta te lleva al detalle con fotos y highlights.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="breadcrumbs">
+      <a href="index.html">Inicio</a> <span>›</span> Eventos
+    </div>
+
+    <section class="events">
+      <div class="grid">
+        <!-- Evento 1..9, cada uno con 1 foto principal y botón -->
+        <article class="card">
+          <img src="https://images.pexels.com/photos/290102/pexels-photo-290102.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 1 - feria al aire libre">
+          <div class="body">
+            <h3>Evento 1</h3>
+            <p>Feria al aire libre con stands de diseño y gastronomía.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 1">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 2 - escenario con música en vivo">
+          <div class="body">
+            <h3>Evento 2</h3>
+            <p>Escenario central con música en vivo y actividades familiares.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 2">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/1648374/pexels-photo-1648374.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 3 - familias disfrutando del evento">
+          <div class="body">
+            <h3>Evento 3</h3>
+            <p>Experiencia familiar con espacios de juegos y descanso.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 3">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 4 - gastronomía local">
+          <div class="body">
+            <h3>Evento 4</h3>
+            <p>Gastronomía local y bebidas artesanales.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 4">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 5 - banda en vivo">
+          <div class="body">
+            <h3>Evento 5</h3>
+            <p>Banda en vivo y zona de descanso.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 5">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/130154/pexels-photo-130154.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 6 - artesanías">
+          <div class="body">
+            <h3>Evento 6</h3>
+            <p>Artesanías y diseño independiente.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 6">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/1398688/pexels-photo-1398688.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 7 - bebidas refrescantes">
+          <div class="body">
+            <h3>Evento 7</h3>
+            <p>Bebidas refrescantes y foodtrucks.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 7">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/1304471/pexels-photo-1304471.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 8 - niños jugando">
+          <div class="body">
+            <h3>Evento 8</h3>
+            <p>Zonas kids y shows interactivos.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 8">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.pexels.com/photos/8962223/pexels-photo-8962223.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 9 - productos artesanales">
+          <div class="body">
+            <h3>Evento 9</h3>
+            <p>Productos artesanales y propuestas sustentables.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 9">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
