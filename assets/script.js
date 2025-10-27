@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -56,33 +55,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 // Close mobile menu if open
-                mobileMenu.classList.remove('active');
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
             }
         });
     });
 
-
-    // Lógica del Modal y Formulario de Postulación
+    // Lógica del Modal de Postulación (APERTURA Y CIERRE)
     const openModalBtn = document.getElementById('openModalBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const applicationModal = document.getElementById('applicationModal');
-    const applicationForm = document.getElementById('applicationForm');
-    const successMessage = document.getElementById('form-success-message');
 
     // Función para cerrar el modal
     function closeModal() {
-        applicationModal.classList.remove('active');
-        document.body.classList.remove('modal-open');
+        if (applicationModal) {
+            applicationModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
     }
 
-    if (openModalBtn && closeModalBtn && applicationModal && applicationForm && successMessage) {
+    if (openModalBtn && closeModalBtn && applicationModal) {
         // Función para abrir el modal
         function openModal() {
             applicationModal.classList.add('active');
             document.body.classList.add('modal-open');
         }
     
-
         // Asignar eventos a los botones
         openModalBtn.addEventListener('click', openModal);
         closeModalBtn.addEventListener('click', closeModal);
@@ -93,51 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeModal();
             }
         });
-
-    // Manejo del envío del formulario
-        applicationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formData = new FormData(applicationForm);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-            const submitButton = applicationForm.querySelector('button[type="submit"]');
-
-            submitButton.disabled = true;
-            submitButton.textContent = 'Enviando...';
-
-            fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: json
-                })
-                .then(async (response) => {
-                    let jsonResponse = await response.json();
-                    if (response.status == 200) {
-                        applicationForm.style.display = 'none';
-                        successMessage.style.display = 'block';
-                    } else {
-                        console.log(response);
-                        alert('Hubo un error al enviar tu postulación. Por favor, intenta de nuevo.');
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    alert('Hubo un error al enviar tu postulación. Por favor, intenta de nuevo.');
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        applicationForm.reset();
-                        submitButton.disabled = false;
-                        submitButton.textContent = 'Enviar Postulación';
-                        applicationForm.style.display = 'block';
-                        successMessage.style.display = 'none';
-                        closeModal();
-                    }, 4000);
-                });
-        });
     }
+
+    // SE HA ELIMINADO EL BLOQUE applicationForm.addEventListener('submit', ...)
+    // El formulario ahora se envía directamente a través del atributo 'action' en el HTML.
+
 });
