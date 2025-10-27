@@ -12,7 +12,7 @@ const slides = document.querySelectorAll('.hero-slide');
 const dots = document.querySelectorAll('.dot');
 
 function showSlide(index) {
-    if (!slides.length || !dots.length) return; // Evita errores si no hay slider
+    if (!slides.length || !dots.length) return;
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
     
@@ -29,13 +29,11 @@ if (slides.length > 0) {
         });
     });
 
-    // Auto slide change
     setInterval(() => {
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
     }, 5000);
 }
-
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -52,12 +50,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
             
-            // Close mobile menu if open
             mobileMenu.classList.remove('active');
         }
     });
 });
-
 
 // Lógica del Modal y Formulario de Postulación
 const openModalBtn = document.getElementById('openModalBtn');
@@ -66,30 +62,26 @@ const applicationModal = document.getElementById('applicationModal');
 const applicationForm = document.getElementById('applicationForm');
 const successMessage = document.getElementById('form-success-message');
 
-// Función para abrir el modal
 function openModal() {
     applicationModal.classList.add('active');
     document.body.classList.add('modal-open');
 }
 
-// Función para cerrar el modal
 function closeModal() {
     applicationModal.classList.remove('active');
     document.body.classList.remove('modal-open');
 }
 
-// Asignar eventos a los botones
 openModalBtn.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
 
-// Cerrar el modal si se hace clic fuera del contenido
 applicationModal.addEventListener('click', (event) => {
     if (event.target === applicationModal) {
         closeModal();
     }
 });
 
-// Manejo del envío del formulario
+// Manejo del envío del formulario (CORREGIDO)
 applicationForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -112,25 +104,38 @@ applicationForm.addEventListener('submit', function(e) {
         .then(async (response) => {
             let jsonResponse = await response.json();
             if (response.status == 200) {
+                // ÉXITO
                 applicationForm.style.display = 'none';
                 successMessage.style.display = 'block';
+                
+                // Después de 4 segundos, resetea el formulario y cierra el modal
+                setTimeout(() => {
+                    applicationForm.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Enviar Postulación';
+                    applicationForm.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    closeModal();
+                }, 4000);
+
             } else {
+                // ERROR DE LA API (ej. CAPTCHA inválido)
                 console.log(response);
-                alert('Hubo un error al enviar tu postulación. Por favor, intenta de nuevo.');
+                // Intenta mostrar un mensaje más específico de la API, si no, uno genérico.
+                alert(jsonResponse.message || 'Hubo un error. Por favor, completa el CAPTCHA e intenta de nuevo.');
+                
+                // Habilita el botón de nuevo para que el usuario pueda reintentar
+                submitButton.disabled = false;
+                submitButton.textContent = 'Enviar Postulación';
             }
         })
         .catch(error => {
+            // ERROR DE RED
             console.log(error);
-            alert('Hubo un error al enviar tu postulación. Por favor, intenta de nuevo.');
-        })
-        .finally(() => {
-            setTimeout(() => {
-                applicationForm.reset();
-                submitButton.disabled = false;
-                submitButton.textContent = 'Enviar Postulación';
-                applicationForm.style.display = 'block';
-                successMessage.style.display = 'none';
-                closeModal();
-            }, 4000);
+            alert('Hubo un error de conexión. Por favor, intenta de nuevo.');
+            
+            // Habilita el botón de nuevo para que el usuario pueda reintentar
+            submitButton.disabled = false;
+            submitButton.textContent = 'Enviar Postulación';
         });
 });
