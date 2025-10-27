@@ -81,61 +81,56 @@ applicationModal.addEventListener('click', (event) => {
     }
 });
 
-// Manejo del envío del formulario (CORREGIDO)
+// Manejo del envío del formulario (ACTUALIZADO PARA FORMSPREE)
 applicationForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const formData = new FormData(applicationForm);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
     const submitButton = applicationForm.querySelector('button[type="submit"]');
 
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
 
-    fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let jsonResponse = await response.json();
-            if (response.status == 200) {
-                // ÉXITO
-                applicationForm.style.display = 'none';
-                successMessage.style.display = 'block';
-                
-                // Después de 4 segundos, resetea el formulario y cierra el modal
-                setTimeout(() => {
-                    applicationForm.reset();
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Enviar Postulación';
-                    applicationForm.style.display = 'block';
-                    successMessage.style.display = 'none';
-                    closeModal();
-                }, 4000);
-
-            } else {
-                // ERROR DE LA API (ej. CAPTCHA inválido)
-                console.log(response);
-                // Intenta mostrar un mensaje más específico de la API, si no, uno genérico.
-                alert(jsonResponse.message || 'Hubo un error. Por favor, completa el CAPTCHA e intenta de nuevo.');
-                
-                // Habilita el botón de nuevo para que el usuario pueda reintentar
+    fetch('https://formspree.io/f/manlnwae', { // <-- URL DE FORMSPREE ACTUALIZADA
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            // ÉXITO
+            applicationForm.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // Después de 4 segundos, resetea el formulario y cierra el modal
+            setTimeout(() => {
+                applicationForm.reset();
                 submitButton.disabled = false;
                 submitButton.textContent = 'Enviar Postulación';
-            }
-        })
-        .catch(error => {
-            // ERROR DE RED
-            console.log(error);
-            alert('Hubo un error de conexión. Por favor, intenta de nuevo.');
-            
+                applicationForm.style.display = 'block';
+                successMessage.style.display = 'none';
+                closeModal();
+            }, 4000);
+        } else {
+            // ERROR DE FORMSPREE O DE RED
+            response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                    alert(data["errors"].map(error => error["message"]).join(", "));
+                } else {
+                    alert('Hubo un error al enviar tu postulación. Por favor, intenta de nuevo.');
+                }
+            });
             // Habilita el botón de nuevo para que el usuario pueda reintentar
             submitButton.disabled = false;
             submitButton.textContent = 'Enviar Postulación';
-        });
+        }
+    }).catch(error => {
+        // ERROR DE CONEXIÓN
+        console.log(error);
+        alert('Hubo un error de conexión. Por favor, intenta de nuevo.');
+        // Habilita el botón de nuevo para que el usuario pueda reintentar
+        submitButton.disabled = false;
+        submitButton.textContent = 'Enviar Postulación';
+    });
 });
