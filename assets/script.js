@@ -46,10 +46,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             window.scrollTo({
-                top: targetElement.offsetTop - 80,
+                top: targetElement.offsetTop - 80, // Ajuste para el header fijo
                 behavior: 'smooth'
             });
             
+            // Cierra el menú móvil si está abierto
             mobileMenu.classList.remove('active');
         }
     });
@@ -76,22 +77,32 @@ openModalBtn.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
 
 applicationModal.addEventListener('click', (event) => {
+    // Cierra el modal si se hace clic fuera del contenido
     if (event.target === applicationModal) {
         closeModal();
     }
 });
 
-// Manejo del envío del formulario (ACTUALIZADO PARA FORMSPREE)
+// Manejo del envío del formulario (CORREGIDO PARA FORMSPREE CON HCAPTCHA)
 applicationForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const formData = new FormData(applicationForm);
     const submitButton = applicationForm.querySelector('button[type="submit"]');
 
+    // Verificamos si el CAPTCHA tiene una respuesta.
+    const captchaResponse = formData.get('h-captcha-response');
+    
+    if (!captchaResponse) {
+        // Si no hay respuesta, avisamos al usuario y detenemos el envío.
+        alert('Por favor, completa el CAPTCHA para continuar.');
+        return; 
+    }
+
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
 
-    fetch('https://formspree.io/f/manlnwae', { // <-- URL DE FORMSPREE ACTUALIZADA
+    fetch('https://formspree.io/f/manlnwae', {
         method: 'POST',
         body: formData,
         headers: {
