@@ -12,12 +12,15 @@
   <!-- Fonts / Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Reuse the site's stylesheet -->
+  <!-- CSS del sitio -->
   <link rel="stylesheet" href="assets/styles.css">
+
+  <!-- Overrides para más espacio y formato panorámico -->
   <style>
     main{ padding-top: 120px; }
+
     .breadcrumbs{
-      width:100%;max-width:1200px;margin:0 auto 16px auto;padding:0 20px;
+      width:100%;max-width:1400px;margin:0 auto 20px auto;padding:0 28px;
       font-size:13px;color:var(--muted)
     }
     .breadcrumbs a{ color:var(--accent); text-decoration:none }
@@ -33,19 +36,34 @@
     .gallery-hero h1{ font-size:40px; letter-spacing:2px; margin:0 0 8px 0 }
     .gallery-hero p{ color:var(--muted); margin:0 auto; max-width:760px }
 
-    .events{ width:100%;max-width:1200px;margin:24px auto 60px;padding:0 20px; }
-    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; }
-    .card{
-      grid-column: span 4; background: color-mix(in srgb, var(--tint) 6%, var(--bg));
-      border:1px solid var(--tint-20); border-radius:16px; overflow:hidden;
-      display:flex; flex-direction:column; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    /* MÁS ANCHO + MÁS AIRE */
+    .events{ width:100%; max-width:1400px; margin:32px auto 84px; padding:0 28px; }
+
+    /* 3 tarjetas por fila (más grandes) + gaps más amplios */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:24px;
     }
-    .card:hover{ transform: translateY(-3px); border-color: var(--tint-30); box-shadow:0 10px 30px rgba(2,8,23,.25); }
-    .card img{ width:100%; aspect-ratio: 16/10; object-fit:cover; display:block }
-    .card .body{ padding:14px 14px 16px }
+
+    .card{
+      background: color-mix(in srgb, var(--tint) 6%, var(--bg));
+      border:1px solid var(--tint-20);
+      border-radius:18px;
+      overflow:hidden;
+      display:flex; flex-direction:column;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      box-shadow:0 12px 34px rgba(0,0,0,.28);
+    }
+    .card:hover{ transform: translateY(-3px); border-color: var(--tint-30); box-shadow:0 14px 36px rgba(2,8,23,.30); }
+
+    /* FOTO MÁS PANORÁMICA */
+    .card img{ width:100%; aspect-ratio: 16 / 7; object-fit:cover; display:block }
+
+    .card .body{ padding:18px 18px 8px }
     .card h3{ margin:0 0 6px 0; font-size:18px; letter-spacing:.4px }
     .card p{ margin:0 0 12px 0; color:var(--muted); font-size:14px }
-    .card .actions{ margin-top:auto; padding:0 14px 16px }
+    .card .actions{ margin-top:auto; padding:0 18px 18px }
     .btn-link{
       display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px;
       border:1px solid var(--tint-20); background: transparent; color: var(--ink); text-decoration:none;
@@ -53,23 +71,25 @@
     }
     .btn-link:hover{ background: var(--accent); color:#000; border-color: transparent; transform: translateY(-1px) }
 
-    @media (max-width: 1024px){ .card{ grid-column: span 6 } }
-    @media (max-width: 700px){ .grid{ grid-template-columns: repeat(6, 1fr) } .card{ grid-column: span 6 } }
+    /* Responsive */
+    @media (max-width: 1024px){ .grid{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px){  .grid{ grid-template-columns: 1fr; } .events{ padding:0 18px; } }
 
-        .credit{
-      font-size:14px;
-      color: var(--muted);
-      margin-top: 6px;
-      text-align:center;
+    /* En pantallas muy anchas, aún más cine */
+    @media (min-width: 1600px){
+      .events{ max-width:1560px }
+      .grid{ gap:28px }
+      .card img{ aspect-ratio: 21 / 9; }
+    }
+
+    .credit{
+      font-size:14px; color: var(--muted);
+      margin-top: 6px; text-align:center;
     }
     .credit a{
-      color: inherit;
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 1px dotted var(--tint-20);
+      color: inherit; font-weight: 600; text-decoration: none; border-bottom: 1px dotted var(--tint-20);
     }
     .credit a:hover{ color: var(--accent); }
-
   </style>
 </head>
 <body>
@@ -115,35 +135,35 @@
     <section class="events">
       <div class="grid" id="eventsGrid" aria-live="polite"></div>
     </section>
-    
-  <script>
-  (async () => {
-    const res = await fetch('assets/gallery/eventos.json', { cache: 'no-cache' });
-    let eventos = await res.json();
 
-    // Ordenar de más nuevo a más viejo
-    eventos.sort((a, b) => new Date(b.date) - new Date(a.date));
+    <script>
+    (async () => {
+      const res = await fetch('assets/gallery/eventos.json', { cache: 'no-cache' });
+      let eventos = await res.json();
 
-    const grid = document.getElementById('eventsGrid');
-    grid.innerHTML = eventos.map(ev => `
-      <article class="card">
-        <img src="${ev.cover}" alt="${ev.title} — portada" loading="lazy" decoding="async">
-        <div class="body">
-          <h3>${ev.title}</h3>
-          <p>Fotos de la edición ${ev.title}.</p>
-        </div>
-        <div class="actions">
-          <a class="btn-link" href="galeria.html?event=${encodeURIComponent(ev.slug)}" aria-label="Ver edición ${ev.title}">
-            Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </div>
-      </article>
-    `).join('');
-  })();
-  </script>
+      // Ordenar de más nuevo a más viejo
+      eventos.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      const grid = document.getElementById('eventsGrid');
+      grid.innerHTML = eventos.map(ev => `
+        <article class="card">
+          <img src="${ev.cover}" alt="${ev.title} — portada" loading="lazy" decoding="async">
+          <div class="body">
+            <h3>${ev.title}</h3>
+            <p>Fotos de la edición ${ev.title}.</p>
+          </div>
+          <div class="actions">
+            <a class="btn-link" href="galeria.html?event=${encodeURIComponent(ev.slug)}" aria-label="Ver edición ${ev.title}">
+              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+      `).join('');
+    })();
+    </script>
   </main>
 
-    <footer>
+  <footer>
     <div class="container">
       <div class="copyright">
         <p>&copy; 2025 Vibra Festa. Todos los derechos reservados.</p>
