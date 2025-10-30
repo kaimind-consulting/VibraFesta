@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VIBRA FESTA · Eventos</title>
+
+  <!-- Colaboración / autoría -->
+  <meta name="author" content="Kaimaind — desarrollo en colaboración con Vibra Festa">
+  <meta name="copyright" content="© 2025 Vibra Festa & Kaimaind">
+
   <!-- Fonts / Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -50,6 +55,21 @@
 
     @media (max-width: 1024px){ .card{ grid-column: span 6 } }
     @media (max-width: 700px){ .grid{ grid-template-columns: repeat(6, 1fr) } .card{ grid-column: span 6 } }
+
+        .credit{
+      font-size:14px;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align:center;
+    }
+    .credit a{
+      color: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--tint-20);
+    }
+    .credit a:hover{ color: var(--accent); }
+
   </style>
 </head>
 <body>
@@ -215,6 +235,18 @@
       </div>
     </section>
   </main>
+
+    <footer>
+    <div class="container">
+      <div class="copyright">
+        <p>&copy; 2025 Vibra Festa. Todos los derechos reservados.</p>
+        <p class="credit">
+          En colaboración con
+          <a href="https://www.linkedin.com/company/kaimind/" target="_blank" rel="noopener">Kaimaind</a>
+        </p>
+      </div>
+    </div>
+  </footer>
 
   <script src="assets/script.js"></script>
 </body>
