@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "octubre-2025",
+    "title": "Octubre 2025",
+    "date": "2025-10-01",
+    "cover": "assets/gallery/OCTUBRE 2025/cover.jpg",
+    "folder": "assets/gallery/OCTUBRE 2025"
+  },
+  {
+    "slug": "agosto-16-2025",
+    "title": "Agosto 16 · 2025",
+    "date": "2025-08-16",
+    "cover": "assets/gallery/AGOSTO 2025/cover.jpg",
+    "folder": "assets/gallery/AGOSTO 2025"
+  },
+  {
+    "slug": "mayo-2024",
+    "title": "Mayo 2024",
+    "date": "2024-05-01",
+    "cover": "assets/gallery/MAYO 2024/cover.jpg",
+    "folder": "assets/gallery/MAYO 2024"
+  },
+  {
+    "slug": "febrero-2024",
+    "title": "Febrero 2024",
+    "date": "2024-02-01",
+    "cover": "assets/gallery/FEBRERO 2024/cover.jpg",
+    "folder": "assets/gallery/FEBRERO 2024"
+  },
+  {
+    "slug": "noviembre-2023",
+    "title": "Noviembre 2023",
+    "date": "2023-11-01",
+    "cover": "assets/gallery/NOVIEMBRE 2023/cover.jpg",
+    "folder": "assets/gallery/NOVIEMBRE 2023"
+  },
+  {
+    "slug": "octubre-2023",
+    "title": "Octubre 2023",
+    "date": "2023-10-01",
+    "cover": "assets/gallery/OCTUBRE 2023/cover.jpg",
+    "folder": "assets/gallery/OCTUBRE 2023"
+  }
+]

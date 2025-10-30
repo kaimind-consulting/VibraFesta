@@ -113,127 +113,34 @@
     </div>
 
     <section class="events">
-      <div class="grid">
-        <!-- Evento 1..9, cada uno con 1 foto principal y botón -->
-        <article class="card">
-          <img src="https://images.pexels.com/photos/290102/pexels-photo-290102.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 1 - feria al aire libre">
-          <div class="body">
-            <h3>Evento 1</h3>
-            <p>Feria al aire libre con stands de diseño y gastronomía.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 1">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 2 - escenario con música en vivo">
-          <div class="body">
-            <h3>Evento 2</h3>
-            <p>Escenario central con música en vivo y actividades familiares.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 2">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/1648374/pexels-photo-1648374.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 3 - familias disfrutando del evento">
-          <div class="body">
-            <h3>Evento 3</h3>
-            <p>Experiencia familiar con espacios de juegos y descanso.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 3">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 4 - gastronomía local">
-          <div class="body">
-            <h3>Evento 4</h3>
-            <p>Gastronomía local y bebidas artesanales.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 4">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 5 - banda en vivo">
-          <div class="body">
-            <h3>Evento 5</h3>
-            <p>Banda en vivo y zona de descanso.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 5">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/130154/pexels-photo-130154.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 6 - artesanías">
-          <div class="body">
-            <h3>Evento 6</h3>
-            <p>Artesanías y diseño independiente.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 6">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/1398688/pexels-photo-1398688.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 7 - bebidas refrescantes">
-          <div class="body">
-            <h3>Evento 7</h3>
-            <p>Bebidas refrescantes y foodtrucks.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 7">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/1304471/pexels-photo-1304471.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 8 - niños jugando">
-          <div class="body">
-            <h3>Evento 8</h3>
-            <p>Zonas kids y shows interactivos.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 8">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.pexels.com/photos/8962223/pexels-photo-8962223.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Evento 9 - productos artesanales">
-          <div class="body">
-            <h3>Evento 9</h3>
-            <p>Productos artesanales y propuestas sustentables.</p>
-          </div>
-          <div class="actions">
-            <a class="btn-link" href="#" target="_self" aria-label="Ver detalle del Evento 9">
-              Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </article>
-
-      </div>
+      <div class="grid" id="eventsGrid" aria-live="polite"></div>
     </section>
+    
+  <script>
+  (async () => {
+    const res = await fetch('assets/gallery/eventos.json', { cache: 'no-cache' });
+    let eventos = await res.json();
+
+    // Ordenar de más nuevo a más viejo
+    eventos.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const grid = document.getElementById('eventsGrid');
+    grid.innerHTML = eventos.map(ev => `
+      <article class="card">
+        <img src="${ev.cover}" alt="${ev.title} — portada" loading="lazy" decoding="async">
+        <div class="body">
+          <h3>${ev.title}</h3>
+          <p>Fotos de la edición ${ev.title}.</p>
+        </div>
+        <div class="actions">
+          <a class="btn-link" href="galeria.html?event=${encodeURIComponent(ev.slug)}" aria-label="Ver edición ${ev.title}">
+            Ver evento <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+    `).join('');
+  })();
+  </script>
   </main>
 
     <footer>
