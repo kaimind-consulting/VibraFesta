@@ -232,11 +232,10 @@
 <body>
   <div class="wrap">
     <div style="text-align:center;">
-      <span class="badge">Vibra Festa · Clases</span>
-      <h1>Reserva tus clases</h1>
+      <span class="badge">Vibra Festa · Clases &amp; Charlas</span>
+      <h1>Inscríbete</h1>
       <p class="subtitle">
-        Elige tu plan, selecciona tus horarios y sube el comprobante
-        de la transferencia a la tasa BCV del día.
+        Selecciona las clases y/o charlas a las que quieres asistir. Sube el comprobante solo si eliges clases de pago.
       </p>
     </div>
 
@@ -248,7 +247,7 @@
       </div>
 
       <div class="field">
-        <label for="telefono">Teléfono</label>
+        <label for="telefono">Teléfono / WhatsApp</label>
         <input type="tel" id="telefono" name="telefono" required>
       </div>
 
@@ -262,104 +261,68 @@
         <input type="text" id="instagram" name="instagram" placeholder="@tuusuario" required>
       </div>
 
-      <!-- Planes -->
+      <!-- Clases con costo -->
       <div class="field">
-        <label>Planes</label>
-        <div class="plan-group">
-          <label class="plan-option">
-            <input type="radio" name="plan" value="3 USD · 1 clase" data-max="1" required>
+        <label>Clases (con costo)</label>
+        <p class="small">Puedes elegir una o varias. El total se calcula automáticamente.</p>
+        <div class="class-list" style="margin-top:6px;">
+          <label class="class-item plan-option" style="padding:10px 12px;">
+            <input type="checkbox" name="clases" class="classCheck" value="9:30am - 10:30am · Yoga" data-price="5">
             <div class="plan-body">
-              <strong>3&nbsp;USD</strong>
-              <span>Incluye 1 clase (sábado o domingo).</span>
+              <strong>9:30am – 10:30am · Yoga</strong>
+              <span>5 USD</span>
             </div>
           </label>
-          <label class="plan-option">
-            <input type="radio" name="plan" value="5 USD · 2 clases" data-max="2">
+          <label class="class-item plan-option" style="padding:10px 12px;">
+            <input type="checkbox" name="clases" class="classCheck" value="11am - 12pm · Body" data-price="4">
             <div class="plan-body">
-              <strong>5&nbsp;USD</strong>
-              <span>Incluye 2 clases a elección.</span>
+              <strong>11am – 12pm · Body</strong>
+              <span>4 USD</span>
             </div>
           </label>
-          <label class="plan-option">
-            <input type="radio" name="plan" value="10 USD · VIP access" data-max="0">
+          <label class="class-item plan-option" style="padding:10px 12px;">
+            <input type="checkbox" name="clases" class="classCheck" value="3pm - 4pm · Pilates" data-price="4">
             <div class="plan-body">
-              <strong>10&nbsp;USD · VIP access</strong>
-              <span>Puedes asistir a todas las clases sábado y domingo (no hace falta seleccionar horarios).</span>
+              <strong>3pm – 4pm · Pilates</strong>
+              <span>4 USD</span>
+            </div>
+          </label>
+          <label class="class-item plan-option" style="padding:10px 12px;">
+            <input type="checkbox" name="clases" class="classCheck" value="3pm - 4pm · Yoga" data-price="5">
+            <div class="plan-body">
+              <strong>3pm – 4pm · Yoga</strong>
+              <span>5 USD</span>
             </div>
           </label>
         </div>
-        <p class="small">
-          Si eliges VIP, no necesitas marcar clases. Para 3 USD marca 1 clase, para 5 USD marca 2 clases.
-        </p>
+        <div id="totalBox" style="display:none; margin-top:10px; padding:10px 14px; border-radius:12px; background:#f7f9ef; border:1px solid #d9e3bd; font-size:14px; font-weight:600; color:#76823A;">
+          Total a pagar: <span id="totalAmt">0</span> USD
+        </div>
       </div>
 
-      <!-- Selección de clases -->
-      <div class="field" id="classSection">
-        <label>Selecciona tus clases</label>
-        <p class="small">
-          Debes seleccionar exactamente
-          <span id="maxSpan">0</span> clase(s). Actualmente: <span id="countSpan">0</span>.
-        </p>
-
-        <div class="day-block">
-          <h3>Sábado</h3>
-          <div class="class-list">
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Sábado 11:00 · Fullbody · Wanda Monsalve">
-              <span>11:00 · Fullbody · Wanda Monsalve</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Sábado 11:00 · Yoga · Mari Méndez">
-              <span>11:00 · Yoga · Mari Méndez</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Sábado 16:00 · Pilates · Lisbeida Rangel">
-              <span>16:00 · Pilates · Lisbeida Rangel</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Sábado 17:00 · Stretching · Lisbeida Rangel">
-              <span>17:00 · Stretching · Lisbeida Rangel</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Sábado 18:00 · Yoga · Mari Méndez">
-              <span>18:00 · Yoga · Mari Méndez</span>
-            </label>
-          </div>
+      <!-- Charlas gratuitas -->
+      <div class="field">
+        <label>Charlas <span style="font-weight:400; color:#16a34a; font-size:13px;">— Gratuitas</span></label>
+        <div class="class-list" style="margin-top:6px;">
+          <label class="class-item plan-option" style="padding:10px 12px; border-color:#bbf7d0; background:#f0fdf4;">
+            <input type="checkbox" name="charlas" value="12pm - 1pm · Charla Salud Mental">
+            <div class="plan-body">
+              <strong>12pm – 1pm · Charla Salud Mental</strong>
+              <span style="color:#16a34a;">Gratis</span>
+            </div>
+          </label>
+          <label class="class-item plan-option" style="padding:10px 12px; border-color:#bbf7d0; background:#f0fdf4;">
+            <input type="checkbox" name="charlas" value="2pm - 3pm · Charla Nutrición">
+            <div class="plan-body">
+              <strong>2pm – 3pm · Charla Nutrición</strong>
+              <span style="color:#16a34a;">Gratis</span>
+            </div>
+          </label>
         </div>
-
-        <div class="day-block">
-          <h3>Domingo</h3>
-          <div class="class-list">
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Domingo 11:00 · Fullbody · Wanda Monsalve">
-              <span>11:00 · Fullbody · Wanda Monsalve</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Domingo 11:00 · Yoga · Mari Méndez">
-              <span>11:00 · Yoga · Mari Méndez</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Domingo 16:00 · Pilates · Lisbeida Rangel">
-              <span>16:00 · Pilates · Lisbeida Rangel</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Domingo 17:00 · Stretching · Lisbeida Rangel">
-              <span>17:00 · Stretching · Lisbeida Rangel</span>
-            </label>
-            <label class="class-item">
-              <input type="checkbox" name="clases" class="classCheck" value="Domingo 18:00 · Yoga · Mari Méndez">
-              <span>18:00 · Yoga · Mari Méndez</span>
-            </label>
-          </div>
-        </div>
-
-        <p class="note">
-          Más adelante, si quieres cambiar tu selección, puedes escribirnos por Instagram.
-        </p>
       </div>
 
-      <!-- AQUÍ ABAJO: bloque de pago móvil, antes del comprobante -->
-      <div class="pay-box">
+      <!-- Bloque de pago (solo si hay clases de pago) -->
+      <div class="pay-box" id="paySection" style="display:none;">
         <div class="pay-title">Datos para tu pago móvil</div>
         <div class="pay-bank">PAGO MÓVIL · Provincial</div>
 
@@ -380,160 +343,135 @@
         </div>
 
         <p class="small" style="margin-top:8px;">
-          Copia estos datos, realiza tu pago móvil a la tasa BCV del día y luego sube el comprobante en el formulario.
+          Realiza tu pago móvil a la tasa BCV del día y sube el comprobante a continuación.
         </p>
       </div>
 
-      <!-- Comprobante -->
-      <div class="field">
+      <!-- Comprobante (solo si hay clases de pago) -->
+      <div class="field" id="comprobanteSection" style="display:none;">
         <label for="comprobante_pago">
-          Comprobante de pago (captura de transferencia a tasa BCV del día)
+          Comprobante de pago (captura de la transferencia)
         </label>
-        <input type="file" id="comprobante_pago" name="comprobante_pago" accept="image/*" required>
+        <input type="file" id="comprobante_pago" name="comprobante_pago" accept="image/*">
       </div>
 
-      <button type="submit">¡Reserva tu lugar!</button>
+      <button type="submit">¡Reservar mi lugar!</button>
 
       <div class="success" id="successMsg"></div>
-      <div class="error" id="errorMsg">
-        Ocurrió un error de validación. Revisa que hayas elegido el plan y la cantidad correcta de clases.
-      </div>
+      <div class="error" id="errorMsg"></div>
     </form>
   </div>
 
   <script>
-    // URL de tu Web App de Apps Script (la /exec)
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEDLU8U70NoYJr_bbzQWPpgXS1DRhleRQS0akOala6D75WuKhvTaDN_49nAVvnCJ6bDw/exec';
 
-    const planRadios = document.querySelectorAll('input[name="plan"]');
-    const classSection = document.getElementById('classSection');
     const classChecks = document.querySelectorAll('.classCheck');
-    const maxSpan = document.getElementById('maxSpan');
-    const countSpan = document.getElementById('countSpan');
+    const totalBox = document.getElementById('totalBox');
+    const totalAmt = document.getElementById('totalAmt');
+    const paySection = document.getElementById('paySection');
+    const comprobanteSection = document.getElementById('comprobanteSection');
+    const comprobanteInput = document.getElementById('comprobante_pago');
     const form = document.getElementById('clasesForm');
     const successMsg = document.getElementById('successMsg');
     const errorMsg = document.getElementById('errorMsg');
     const submitBtn = form.querySelector('button[type="submit"]');
 
     let isSubmitting = false;
-    let maxAllowed = 0;
 
-    function updateCount() {
-      const count = Array.from(classChecks).filter(c => c.checked).length;
-      countSpan.textContent = count;
-      return count;
+    function calcTotal() {
+      let total = 0;
+      classChecks.forEach(c => {
+        if (c.checked) total += parseInt(c.dataset.price || '0', 10);
+      });
+      return total;
     }
 
-    function applyPlanUI() {
-      const selected = Array.from(planRadios).find(r => r.checked);
-      if (!selected) return;
-
-      maxAllowed = parseInt(selected.dataset.max || '0', 10);
-
-      if (maxAllowed === 0) {
-        classSection.style.display = 'none';
-        classChecks.forEach(c => { c.checked = false; });
-        maxSpan.textContent = '0';
-        countSpan.textContent = '0';
+    function updatePayUI() {
+      const total = calcTotal();
+      if (total > 0) {
+        totalAmt.textContent = total;
+        totalBox.style.display = 'block';
+        paySection.style.display = 'block';
+        comprobanteSection.style.display = 'flex';
+        comprobanteInput.required = true;
       } else {
-        classSection.style.display = 'block';
-        maxSpan.textContent = String(maxAllowed);
-        updateCount();
+        totalBox.style.display = 'none';
+        paySection.style.display = 'none';
+        comprobanteSection.style.display = 'none';
+        comprobanteInput.required = false;
+        comprobanteInput.value = '';
       }
     }
 
-    planRadios.forEach(r => {
-      r.addEventListener('change', applyPlanUI);
-    });
-
-    classChecks.forEach(chk => {
-      chk.addEventListener('change', () => {
-        if (maxAllowed > 0) {
-          const count = updateCount();
-          if (count > maxAllowed) {
-            chk.checked = false;
-            updateCount();
-            alert('Solo puedes elegir ' + maxAllowed + ' clase(s) con este plan.');
-          }
-        } else {
-          updateCount();
-        }
-      });
-    });
+    classChecks.forEach(c => c.addEventListener('change', updatePayUI));
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       if (isSubmitting) return;
+
+      const clasesSeleccionadas = Array.from(classChecks).filter(c => c.checked).map(c => c.value);
+      const charlasSeleccionadas = Array.from(document.querySelectorAll('input[name="charlas"]:checked')).map(c => c.value);
+
+      if (clasesSeleccionadas.length === 0 && charlasSeleccionadas.length === 0) {
+        return showError('Debes seleccionar al menos una clase o charla.');
+      }
+
+      const total = calcTotal();
+
+      if (total > 0) {
+        if (!comprobanteInput.files || comprobanteInput.files.length === 0) {
+          return showError('Debes subir el comprobante de pago para las clases seleccionadas.');
+        }
+      }
+
       isSubmitting = true;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
-
       errorMsg.style.display = 'none';
       successMsg.style.display = 'none';
 
-      const selectedPlan = Array.from(planRadios).find(r => r.checked);
-      if (!selectedPlan) {
-        return showError('Debes elegir un plan.');
-      }
-
-      const max = parseInt(selectedPlan.dataset.max || '0', 10);
-      const seleccionadas = Array.from(classChecks).filter(c => c.checked);
-      const count = seleccionadas.length;
-
-      if (max > 0 && count !== max) {
-        return showError('Debes seleccionar exactamente ' + max + ' clase(s) para este plan.');
-      }
-
-      const fileInput = document.getElementById('comprobante_pago');
-      if (!fileInput.files || fileInput.files.length === 0) {
-        return showError('Debes subir el comprobante de pago.');
-      }
-
-      const file = fileInput.files[0];
-
-      const reader = new FileReader();
-      reader.onload = async function (evt) {
-        const dataUrl = evt.target.result;   // "data:image/png;base64,AAAA..."
-        const base64 = dataUrl.split(',')[1];
-
-        const clasesArray = seleccionadas.map(c => c.value);
-
+      function buildAndSend(base64, fileName, fileType) {
         const payload = {
           nombre: document.getElementById('nombre').value.trim(),
           telefono: document.getElementById('telefono').value.trim(),
           correo: document.getElementById('correo').value.trim(),
           instagram: document.getElementById('instagram').value.trim(),
-          plan: selectedPlan.value,
-          clasesArray: clasesArray,
-          fileName: file.name,
-          fileType: file.type || 'application/octet-stream',
-          fileData: base64
+          clasesArray: clasesSeleccionadas,
+          charlasArray: charlasSeleccionadas,
+          totalUSD: total,
+          fileName: fileName || '',
+          fileType: fileType || '',
+          fileData: base64 || ''
         };
 
-        try {
-          await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'text/plain;charset=utf-8'
-            },
-            body: JSON.stringify(payload)
-          });
-
-          // No podemos leer la respuesta en no-cors, pero el POST se envía.
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(() => {
           window.location.href = 'gracias_vibra.html';
-        } catch (err) {
+        }).catch(err => {
           console.error(err);
           showError('Hubo un problema al enviar. Intenta de nuevo o escríbenos por Instagram.');
-        }
-      };
+        });
+      }
 
-      reader.onerror = function () {
-        showError('No se pudo leer el archivo. Intenta con otra imagen.');
-      };
-
-      reader.readAsDataURL(file);
+      if (total > 0 && comprobanteInput.files.length > 0) {
+        const file = comprobanteInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function (evt) {
+          const base64 = evt.target.result.split(',')[1];
+          buildAndSend(base64, file.name, file.type || 'application/octet-stream');
+        };
+        reader.onerror = function () {
+          showError('No se pudo leer el archivo. Intenta con otra imagen.');
+        };
+        reader.readAsDataURL(file);
+      } else {
+        buildAndSend('', '', '');
+      }
     });
 
     function showError(msg) {
@@ -541,16 +479,11 @@
       errorMsg.style.display = 'block';
       isSubmitting = false;
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Enviar reserva';
+      submitBtn.textContent = '¡Reservar mi lugar!';
     }
 
-    applyPlanUI();
-    updateCount();
-
-    // Lógica de copiar datos de pago
-    const copyButtons = document.querySelectorAll('.copy-btn');
-
-    copyButtons.forEach(btn => {
+    // Copiar datos de pago
+    document.querySelectorAll('.copy-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const text = btn.dataset.copy;
         try {
