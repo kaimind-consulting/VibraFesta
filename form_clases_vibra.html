@@ -266,6 +266,13 @@
         <label>Clases (con costo)</label>
         <p class="small">Puedes elegir una o varias. El total se calcula automáticamente.</p>
         <div class="class-list" style="margin-top:6px;">
+          <label class="class-item plan-option" style="padding:10px 12px; border-color:#76823A; background:#f7f9ef;">
+            <input type="checkbox" name="fullaccess" id="fullAccessCheck" value="Full Access · Todas las clases" data-price="12">
+            <div class="plan-body">
+              <strong>⭐ Full Access · Todas las clases</strong>
+              <span style="color:#76823A; font-weight:600;">12 USD — Acceso ilimitado a todas las clases del evento</span>
+            </div>
+          </label>
           <label class="class-item plan-option" style="padding:10px 12px;">
             <input type="checkbox" name="clases" class="classCheck" value="9:30am - 10:30am · Yoga" data-price="5">
             <div class="plan-body">
@@ -378,7 +385,10 @@
 
     let isSubmitting = false;
 
+    const fullAccessCheck = document.getElementById('fullAccessCheck');
+
     function calcTotal() {
+      if (fullAccessCheck.checked) return 12;
       let total = 0;
       classChecks.forEach(c => {
         if (c.checked) total += parseInt(c.dataset.price || '0', 10);
@@ -403,14 +413,27 @@
       }
     }
 
-    classChecks.forEach(c => c.addEventListener('change', updatePayUI));
+    // Full Access desmarca clases individuales y viceversa
+    fullAccessCheck.addEventListener('change', function () {
+      if (this.checked) {
+        classChecks.forEach(c => { c.checked = false; });
+      }
+      updatePayUI();
+    });
+
+    classChecks.forEach(c => c.addEventListener('change', function () {
+      if (this.checked) fullAccessCheck.checked = false;
+      updatePayUI();
+    }));
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       if (isSubmitting) return;
 
-      const clasesSeleccionadas = Array.from(classChecks).filter(c => c.checked).map(c => c.value);
+      const clasesSeleccionadas = fullAccessCheck.checked
+        ? ['Full Access · Todas las clases']
+        : Array.from(classChecks).filter(c => c.checked).map(c => c.value);
       const charlasSeleccionadas = Array.from(document.querySelectorAll('input[name="charlas"]:checked')).map(c => c.value);
 
       if (clasesSeleccionadas.length === 0 && charlasSeleccionadas.length === 0) {
