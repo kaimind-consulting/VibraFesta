@@ -232,10 +232,10 @@
 <body>
   <div class="wrap">
     <div style="text-align:center;">
-      <span class="badge">Vibra Festa · Clases &amp; Charlas</span>
-      <h1>Inscríbete</h1>
+      <span class="badge">Vibra Festa · Charlas</span>
+      <h1>Inscríbete en las charlas</h1>
       <p class="subtitle">
-        Selecciona las clases y/o charlas a las que quieres asistir. Sube el comprobante solo si eliges clases de pago.
+        Selecciona las charlas gratuitas a las que quieres asistir.
       </p>
     </div>
 
@@ -261,54 +261,15 @@
         <input type="text" id="instagram" name="instagram" placeholder="@tuusuario" required>
       </div>
 
-      <!-- Clases con costo -->
-      <div class="field">
-        <label>Clases (con aporte)</label>
-        <p class="small">Puedes elegir una o varias. El total se calcula automáticamente.</p>
-        <div class="class-list" style="margin-top:6px;">
-          <label class="class-item plan-option" style="padding:10px 12px; border-color:#76823A; background:#f7f9ef;">
-            <input type="checkbox" name="fullaccess" id="fullAccessCheck" value="Full Access · Todas las clases" data-price="12">
-            <div class="plan-body">
-              <strong>⭐ Full Access · Todas las clases</strong>
-              <span style="color:#76823A; font-weight:600;">12 USD — Acceso ilimitado a todas las clases del evento</span>
-            </div>
-          </label>
-          <label class="class-item plan-option" style="padding:10px 12px;">
-            <input type="checkbox" name="clases" class="classCheck" value="9:30am - 10:30am · Yoga" data-price="5">
-            <div class="plan-body">
-              <strong>9:30am – 10:30am · Yoga</strong>
-              <span>5 USD</span>
-            </div>
-          </label>
-          <label class="class-item plan-option" style="padding:10px 12px;">
-            <input type="checkbox" name="clases" class="classCheck" value="11am - 12pm · Body" data-price="4">
-            <div class="plan-body">
-              <strong>11am – 12pm · Full Body</strong>
-              <span>3 USD</span>
-            </div>
-          </label>
-          <label class="class-item plan-option" style="padding:10px 12px;">
-            <input type="checkbox" name="clases" class="classCheck" value="3pm - 4pm · Pilates" data-price="4">
-            <div class="plan-body">
-              <strong>3pm – 4pm · Pilates</strong>
-              <span>4 USD</span>
-            </div>
-          </label>
-
-        </div>
-        <div id="totalBox" style="display:none; margin-top:10px; padding:10px 14px; border-radius:12px; background:#f7f9ef; border:1px solid #d9e3bd; font-size:14px; font-weight:600; color:#76823A;">
-          Total a pagar: <span id="totalAmt">0</span> USD
-        </div>
-      </div>
-
       <!-- Charlas gratuitas -->
       <div class="field">
         <label>Charlas <span style="font-weight:400; color:#16a34a; font-size:13px;">— Gratuitas</span></label>
+        <p class="small" style="margin-bottom:6px;">Marca las que planeas asistir.</p>
         <div class="class-list" style="margin-top:6px;">
           <label class="class-item plan-option" style="padding:10px 12px; border-color:#bbf7d0; background:#f0fdf4;">
             <input type="checkbox" name="charlas" value="12pm - 1pm · Charla Salud Mental">
             <div class="plan-body">
-              <strong>12:30pm – 1:30pm · Charla El Ritmo del Balance</strong>
+              <strong>12pm – 1pm · Charla Salud Mental</strong>
               <span style="color:#16a34a;">Gratis</span>
             </div>
           </label>
@@ -322,41 +283,7 @@
         </div>
       </div>
 
-      <!-- Bloque de pago (solo si hay clases de pago) -->
-      <div class="pay-box" id="paySection" style="display:none;">
-        <div class="pay-title">Datos para tu pago móvil</div>
-        <div class="pay-bank">PAGO MÓVIL · Provincial</div>
-
-        <div class="copy-field">
-          <div class="copy-main">
-            <span class="copy-label">Cédula</span>
-            <span class="copy-value">24853511</span>
-          </div>
-          <button type="button" class="copy-btn" data-copy="24853511">Copiar</button>
-        </div>
-
-        <div class="copy-field">
-          <div class="copy-main">
-            <span class="copy-label">Teléfono</span>
-            <span class="copy-value">04247136841</span>
-          </div>
-          <button type="button" class="copy-btn" data-copy="04247136841">Copiar</button>
-        </div>
-
-        <p class="small" style="margin-top:8px;">
-          Realiza tu pago móvil a la tasa BCV del día y sube el comprobante a continuación.
-        </p>
-      </div>
-
-      <!-- Comprobante (solo si hay clases de pago) -->
-      <div class="field" id="comprobanteSection" style="display:none;">
-        <label for="comprobante_pago">
-          Comprobante de pago (captura de la transferencia)
-        </label>
-        <input type="file" id="comprobante_pago" name="comprobante_pago" accept="image/*">
-      </div>
-
-      <button type="submit">¡Reservar mi lugar!</button>
+      <button type="submit">¡Inscribirme!</button>
 
       <div class="success" id="successMsg"></div>
       <div class="error" id="errorMsg"></div>
@@ -366,129 +293,46 @@
   <script>
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEDLU8U70NoYJr_bbzQWPpgXS1DRhleRQS0akOala6D75WuKhvTaDN_49nAVvnCJ6bDw/exec';
 
-    const classChecks = document.querySelectorAll('.classCheck');
-    const totalBox = document.getElementById('totalBox');
-    const totalAmt = document.getElementById('totalAmt');
-    const paySection = document.getElementById('paySection');
-    const comprobanteSection = document.getElementById('comprobanteSection');
-    const comprobanteInput = document.getElementById('comprobante_pago');
     const form = document.getElementById('clasesForm');
     const successMsg = document.getElementById('successMsg');
     const errorMsg = document.getElementById('errorMsg');
     const submitBtn = form.querySelector('button[type="submit"]');
-
     let isSubmitting = false;
-
-    const fullAccessCheck = document.getElementById('fullAccessCheck');
-
-    function calcTotal() {
-      if (fullAccessCheck.checked) return 12;
-      let total = 0;
-      classChecks.forEach(c => {
-        if (c.checked) total += parseInt(c.dataset.price || '0', 10);
-      });
-      return total;
-    }
-
-    function updatePayUI() {
-      const total = calcTotal();
-      if (total > 0) {
-        totalAmt.textContent = total;
-        totalBox.style.display = 'block';
-        paySection.style.display = 'block';
-        comprobanteSection.style.display = 'flex';
-        comprobanteInput.required = true;
-      } else {
-        totalBox.style.display = 'none';
-        paySection.style.display = 'none';
-        comprobanteSection.style.display = 'none';
-        comprobanteInput.required = false;
-        comprobanteInput.value = '';
-      }
-    }
-
-    // Full Access desmarca clases individuales y viceversa
-    fullAccessCheck.addEventListener('change', function () {
-      if (this.checked) {
-        classChecks.forEach(c => { c.checked = false; });
-      }
-      updatePayUI();
-    });
-
-    classChecks.forEach(c => c.addEventListener('change', function () {
-      if (this.checked) fullAccessCheck.checked = false;
-      updatePayUI();
-    }));
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       if (isSubmitting) return;
 
-      const clasesSeleccionadas = fullAccessCheck.checked
-        ? ['Full Access · Todas las clases']
-        : Array.from(classChecks).filter(c => c.checked).map(c => c.value);
       const charlasSeleccionadas = Array.from(document.querySelectorAll('input[name="charlas"]:checked')).map(c => c.value);
 
-      if (clasesSeleccionadas.length === 0 && charlasSeleccionadas.length === 0) {
-        return showError('Debes seleccionar al menos una clase o charla.');
-      }
-
-      const total = calcTotal();
-
-      if (total > 0) {
-        if (!comprobanteInput.files || comprobanteInput.files.length === 0) {
-          return showError('Debes subir el comprobante de pago para las clases seleccionadas.');
-        }
+      if (charlasSeleccionadas.length === 0) {
+        return showError('Debes seleccionar al menos una charla.');
       }
 
       isSubmitting = true;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
       errorMsg.style.display = 'none';
-      successMsg.style.display = 'none';
 
-      function buildAndSend(base64, fileName, fileType) {
-        const payload = {
-          nombre: document.getElementById('nombre').value.trim(),
-          telefono: document.getElementById('telefono').value.trim(),
-          correo: document.getElementById('correo').value.trim(),
-          instagram: document.getElementById('instagram').value.trim(),
-          clasesArray: clasesSeleccionadas,
-          charlasArray: charlasSeleccionadas,
-          totalUSD: total,
-          fileName: fileName || '',
-          fileType: fileType || '',
-          fileData: base64 || ''
-        };
+      const payload = {
+        nombre: document.getElementById('nombre').value.trim(),
+        telefono: document.getElementById('telefono').value.trim(),
+        correo: document.getElementById('correo').value.trim(),
+        instagram: document.getElementById('instagram').value.trim(),
+        charlasArray: charlasSeleccionadas
+      };
 
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        }).then(() => {
-          window.location.href = 'gracias_vibra.html';
-        }).catch(err => {
-          console.error(err);
-          showError('Hubo un problema al enviar. Intenta de nuevo o escríbenos por Instagram.');
-        });
-      }
-
-      if (total > 0 && comprobanteInput.files.length > 0) {
-        const file = comprobanteInput.files[0];
-        const reader = new FileReader();
-        reader.onload = function (evt) {
-          const base64 = evt.target.result.split(',')[1];
-          buildAndSend(base64, file.name, file.type || 'application/octet-stream');
-        };
-        reader.onerror = function () {
-          showError('No se pudo leer el archivo. Intenta con otra imagen.');
-        };
-        reader.readAsDataURL(file);
-      } else {
-        buildAndSend('', '', '');
-      }
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        window.location.href = 'gracias_vibra.html';
+      }).catch(err => {
+        console.error(err);
+        showError('Hubo un problema al enviar. Intenta de nuevo o escríbenos por Instagram.');
+      });
     });
 
     function showError(msg) {
@@ -496,32 +340,9 @@
       errorMsg.style.display = 'block';
       isSubmitting = false;
       submitBtn.disabled = false;
-      submitBtn.textContent = '¡Reservar mi lugar!';
+      submitBtn.textContent = '¡Inscribirme!';
     }
 
-    // Copiar datos de pago
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const text = btn.dataset.copy;
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(text);
-          } else {
-            const tmp = document.createElement('textarea');
-            tmp.value = text;
-            document.body.appendChild(tmp);
-            tmp.select();
-            document.execCommand('copy');
-            document.body.removeChild(tmp);
-          }
-          const original = btn.textContent;
-          btn.textContent = 'Copiado';
-          setTimeout(() => { btn.textContent = original; }, 1500);
-        } catch (e) {
-          alert('Copia este dato: ' + text);
-        }
-      });
-    });
   </script>
 </body>
 </html>
